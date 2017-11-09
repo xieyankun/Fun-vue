@@ -32,6 +32,9 @@ const mutations = {
     let id = p.id
     console.log(p)
     state.all.find(p => p.id === id).inventory--
+  },
+  [types.DECREASE_CART](state, {id}) {
+    console.log(id)
   }
 }
 

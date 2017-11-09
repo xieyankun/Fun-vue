@@ -6,22 +6,39 @@
       <button
         :disabled="!p.inventory"
         @click="addToCart(p)">
-        Add to cart
+        添加+
       </button>
+      <span>{{count}}</span>
+      <button
+        @click="decreaseCart(p)">
+        减少-
+      </button>
+      <cart-control></cart-control>
     </li>
   </ul>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
+import CartControl from '@/components/CartControl'
 export default {
-  computed: mapGetters({
-    products: 'allProducts'
-  }),
+  components: {
+    CartControl
+  },
+  data () {
+    return {
+      count: 0
+    }
+  },
+  computed: {
+    ...mapGetters({
+      products: 'allProducts'
+    })
+  },
   methods: {
     ...mapActions([
-      'addToCart'
+      'addToCart',
+      'decreaseCart'
     ])
   },
   created () {
